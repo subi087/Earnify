@@ -1,0 +1,86 @@
+# Earnify<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnify - Task & Earn</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+        button { background: #28a745; color: white; padding: 10px; border: none; cursor: pointer; margin: 10px; }
+        .leaderboard, .history { text-align: left; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Earnify - Task & Earn</h1>
+    
+    <div class="container">
+        <h2>Welcome, User!</h2>
+        <p>Complete tasks & earn money.</p>
+        
+        <h3>Your Balance: <span id="balance">৳0</span></h3>
+
+        <button onclick="completeTask()">Complete Task (Earn ৳10)</button>
+        <button onclick="watchAd()">Watch Ad (Earn ৳5)</button>
+        <button onclick="dailyBonus()">Claim Daily Bonus (৳15)</button>
+        <button onclick="referFriend()">Refer a Friend (Earn ৳20)</button>
+        <button onclick="requestPayment()">Request Payment</button>
+
+        <h3>Leaderboard</h3>
+        <ul class="leaderboard" id="leaderboard">
+            <li>1. Alex - ৳5000</li>
+            <li>2. Sam - ৳4500</li>
+            <li>3. Rahim - ৳4000</li>
+        </ul>
+
+        <h3>Payment History</h3>
+        <ul class="history" id="history"></ul>
+
+    </div>
+
+    <script>
+        let balance = 0;
+
+        function completeTask() {
+            balance += 10;
+            updateBalance();
+            alert("Task Completed! You earned ৳10.");
+        }
+
+        function watchAd() {
+            balance += 5;
+            updateBalance();
+            alert("You watched an ad & earned ৳5.");
+        }
+
+        function dailyBonus() {
+            balance += 15;
+            updateBalance();
+            alert("Daily Bonus Claimed! You earned ৳15.");
+        }
+
+        function referFriend() {
+            balance += 20;
+            updateBalance();
+            alert("Referral Bonus! You earned ৳20.");
+        }
+
+        function requestPayment() {
+            if (balance >= 3000) {  // মিনিমাম উইথড্র এখন ৩,০০০৳
+                alert("Payment Requested Successfully!");
+                document.getElementById("history").innerHTML += `<li>You withdrew ৳${balance}</li>`;
+                balance = 0;
+            } else {
+                alert("Minimum ৳3000 required to withdraw.");
+            }
+            updateBalance();
+        }
+
+        function updateBalance() {
+            document.getElementById("balance").innerText = "৳" + balance;
+        }
+    </script>
+
+</body>
+</html>
